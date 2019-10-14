@@ -2,7 +2,57 @@
 
 Una vez que tengas CONSUL funcionando en el servidor, hay algunas opciones básicas de configuración que probablemente quieras definir para poder empezar a usarlo.
 
-Para ello deberás acceder a tu instalación de CONSUL a través de cualquier navegador de internet e identificarte con el usuario de administración (inicialmente es el usuario `admin@consul.dev` con la contraseña `12345678`). Una vez identificado verás en la parte superior derecha de la pantalla el enlace "Admin" que te llevará a la interfaz de administración. Desde esta interfaz puedes configurar las siguientes opciones básicas:
+Para ello deberás acceder a tu instalación de CONSUL a través de cualquier navegador de internet e identificarte con el usuario de administración (inicialmente es el usuario `admin@consul.dev` con la contraseña `12345678`). Una vez identificado verás en la parte superior derecha de la pantalla el enlace "Admin" que te llevará a la interfaz de administración. Desde esta interfaz recomendamos configurar las principales opciones básicas a través del asistente de instalación, y una vez configurado recorrer el resto de posibles funcionalidades que se pueden desear accediendo a la sección Configuración desde el submenú de Administración.
+
+## Asistente de instalación
+Para acceder al Asistente de instalación, en el menú lateral encontrarás la opción "Configuración" y posteriormente el submenú "Asistentes", donde podremos acceder al "Asistente de instalación".
+
+#### Paso 1 - Bienvenida al Asistente de Instalación
+En este asistente realizaremos paso a paso toda la configuración necesaria para poder personalizar la aplicación a las necesidades de su Institución. Si no dispone de alguna información solicitada en el asistente podrá obviarlos y modificarlo en un futuro en la Sección de Configuración relacionada o desde este mismo Asistente.
+
+#### Paso 2 - Configuración Global
+En este paso podrá actualizar algunas de las Configuraciones Globales de la aplicación más importantes. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración > Configuración Global" o volviendo a ejecutar el Asistente de Instalación.
+
+- Nombre del sitio. Este nombre aparecerá en el asunto de emails, páginas de ayuda...
+- Edad mínima para participar. Si utilizas un sistema de verificación de usuarios esta será la edad mínima que se exigirá a los usuarios. Sobre el sistema de verificación de usuarios se ha incluido un nuevo asistente para poder configurarlo, que será explicado al final de esta sección.
+
+#### Paso 3 - Procesos de participación
+En este paso podrán activar/desactivar los procesos de participación que decida utilizar cada Institución. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración > Procesos de Participación" o volviendo a ejecutar el Asistente de Instalación.
+- Debates: El espacio de debates ciudadanos está dirigido a que cualquier persona pueda exponer temas que le preocupan y sobre los que quiera compartir puntos de vista con otras personas.
+- Propuestas: Las propuestas ciudadanas son una oportunidad para que los vecinos y colectivos decidan directamente cómo quieren que sea su sociedad, después de conseguir los apoyos suficientes y de someterse a votación ciudadana.
+- Número de apoyos necesarios para aprobar una Propuesta: Cuando una propuesta alcance este número de apoyos ya no podrá recibir más y se considera exitosa.
+- Votaciones: Las votaciones ciudadanas son un mecanismo de participación por el que la ciudadanía con derecho a voto puede tomar decisiones de forma directa.
+- Presupuestos participativos: Con los presupuestos participativos la ciudadanía decide a qué proyectos presentados por los vecinos y vecinas va destinada una parte del presupuesto.
+
+#### Paso 4 - Configuración del Mapa
+En este paso podrán activar/desactivar la geolocalización de las propuestas y proyectos de gasto, y personalizar la manera en que se muestra el mapa a los usuarios. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración > Configuración del mapa" o volviendo a ejecutar el Asistente de Instalación.
+- Geolocalización de propuestas y proyectos de gasto: Permite activar la geolocalización en la aplicación.
+- Latitud: Latitud para mostrar la posición del mapa
+- Longitud: Longitud para mostrar la posición del mapa
+- Zoom: Zoom para mostrar la posición del mapa. Puedes probar con un valor inicial y luego cambiarlo más adelante.
+
+#### Paso 5 - Conexión SMTP
+En este paso podrán configurar la conexión SMTP para poder enviar correos desde la aplicación En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración > Conexión SMTP" o volviendo a ejecutar el Asistente de Instalación.
+- Configuración SMTP: Activa esta funcionalidad para permitir utilizar la configuración SMTP definida en esta sección y poder enviar emails desde la aplicación.
+- Host SMTP: Configura el host del servidor SMTP. Ejemplo: 'smtp.example.com'.
+- Puerto SMTP: Configura el puerto del servidor SMTP. Ejemplo: 587.
+- Dominio: Configura el dominio del servidor SMTP. Ejemplo: 'example.com'.
+- Usuario SMTP: Configura el usuario del servidor SMTP. Ejemplo: 'username'.
+- Contraseña SMTP: Configura la contraseña del servidor SMTP. Ejemplo: 'password'.
+- Autenticación SMTP: Configura el mecanismo de autenticación del servidor SMTP. Ejemplo: 'plain'.
+- Activar TLS para SMTP.
+
+#### Paso 6 - Idiomas y Zona horaria
+En este paso podrán configurar el idioma por defecto de la aplicación, los idiomas disponibles y la zona horaria en la que se encuentra. En caso de querer modificar alguna una vez realizado el Asistente podrá acceder a la sección "Configuración > Regional Settings" o volviendo a ejecutar el Asistente de Instalación.
+
+- Idioma por defecto: Definir el idioma por defecto de la aplicación mediante el selector que ofrece todos los idiomas disponibles en la aplicación.
+- Idiomas disponibles de la aplicación:  Podrá ver todo el listado de idiomas disponibles en la aplicación y habilitar/deshabilitar los que considere oportunos.
+- Zona horaria: Permite seleccionar la zona horaria en la que queremos utilizar la aplicación.
+
+#### Paso 7 - Finalización del Asistente
+En caso de querer modificar cualquier dato una vez realizado el Asistente podrá modificarlo en la sección Configuración o volviendo a ejecutar el Asistente de Instalación.
+
+Al finalizar el asistente nos redirigirá a la pantalla de Configuración donde podremos modificar tanto los valores introducidos como configurar nuevas funcionalidades y características de la aplicación no contempladas en este Asistente de instalación explicadas en los siguientes apartados.
 
 ## Parámetros de la configuración global
 En el menú lateral encontrarás la opción "Configuración" y posteriormente el submenú "Configuración global". Aquí encontrarás muchos parámetros interesantes, pero por el momento te recomendamos definir algunos de los más básicos. Más adelante cuando estés más familiarizado con la herramienta podrás volver a configurar otros parámetros:
