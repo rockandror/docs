@@ -54,6 +54,51 @@ If you want to modify any data once the Wizard has been carried out, you can mod
 
 At the end of the wizard will redirect us to the Configuration section where we can modify both the values entered and configure new features of the application not covered in this installation wizard explained in the following sections.
 
+## Verification Wizard
+To explain the use of this verification wizard we will explain step by step the content of each page of the wizard and at the end a section of examples of how to create verification processes using this wizard, which will be the perfect complement to correctly understand this functionality.
+
+To access the Verification Wizard, in the side menu you will find the option "Configuration" and then the submenu “Wizards", where you will be able to access the "Verification Wizard".
+
+#### Step 1 - Welcome to the verification process wizard
+In this wizard we will carry out step by step all necessary configuration to be able to customize users verification process of the application to suite your verification needs.
+
+To use the verification process that we are going to configure in this wizard you must activate:
+- Customizable user verification process
+and disable:
+- Skip user verification
+
+#### Step 2 - User verification methods
+Enable or disable the available user verification methods you want. You can combine them to suite your needs.
+- Verify a user against SOAP Remote Census
+- Verify a user against the Local Census
+- Verify a user's phone
+
+Solo a los métodos de verificación habilitados les podremos asignar campos que crearemos en el siguiente paso. Asignar un campo a un método de verificación significa que ese campo le será enviado durante el proceso de verificación.
+
+#### Paso 3 - Formulario de verificación de usuarios
+En este paso podremos definir los campos que solicitaremos al usuario en el formulario de verificación. Y en los siguientes pasos podremos asignar cada uno de estos campos a uno o varios métodos de verificación.
+
+El formulario para crear estos campos ofrece muchas posibilidades para permitir crear cualquier tipo de proceso de verificación.
+- Etiqueta: El nombre con el que veremos el campo en el formulario de verificación de un usuario. Ofrece la posibilidad de añadir traducciones.
+- Ayuda: Texto informativo que se mostrará al lado del campo que estamos definiendo. A este campo ayuda se le pueden dar diversos usos desde una descripción del campo hasta una definición del formato esperado.
+- Nombre: Este es el nombre con el que guardaremos el campo en base de datos. El nombre es necesario que no contenga espacios en blanco y recomendable que este en minúsculas. En caso de ser un campo que se vaya a enviar al Censo Local, el nombre que definimos en este campo es el nombre con el que se intentará verificar el registro.
+- Posición: Posición en la que mostraremos el campo en el formulario de verificación.
+- Requerido: Marcar este checkbox obligará a rellenar el campo en el formulario. Si no se rellena en el formulario provocará un error de validación.
+En caso de no marcarlo servirá para pedir información adicional que no queremos forzar a que el usuario lo introduzca para poder verificarse.
+- Requiere campo de confirmación: Marcar este checkbox creará un campo adicional de confirmación. Si no se rellena con el mismo valor  provocará un error de validación. Este campo es útil cuando queremos asegurarnos de que el dato introducido es correcto, como por ejemplo podría ser el número de teléfono al que tenemos que enviar un código de confirmación.
+- Visible: Por defecto este checkbox siempre esta marcado ya que la mayoria de los campos que creamos son para mostrarse en el formulario. Hay ciertos casos un poco específicos en los que podemos requerir crear campos que no necesariamente necesitan ser visibles en el formulario, como puede ser un campo del tipo "zona geográfica".
+- Formato: En este campo se puede añadir una expresión regular para forzar un formato específico del valor introducido en el formulario de verificación. En caso de no cumplir con está expresión regular se provocará un error en la validación. Para el correcto funcionamiento de este campo es necesario introducir la expresión regular sin los escapados de inicio (/) y final(/). Si este campo se deja en blanco, no se aplica ningún validación de formato.
+- Tipo del campo: En este selector se puede elegir que tipo de campo queremos crear:
+  - Campo de texto
+  - Campo checkbox: Permite forzar que el campo que vamos a crear sea de tipo checkbox y ofrece la posibilidad de añadirle un link asociado a este checkox. El caso más claro sería querer crear un checkox de terminos y condiciones de uso, que será necesario marcarlo para poder permitir la verificación y que queremos mostrar un link a una página de la aplicación donde se explican esos términos y condiciones de uso. Para utilizar correctamente este campo adicional se debe rellenar con el slug de una nueva página de nuestra aplicación, para ello debemos acceder a la sección de administración 'Contenido del sitio' > 'Personalizar páginas' y crear la página con el slug introducido.
+  - Campo selector: Permite crear un campo del tipo selector y al seleccionarlo en el formulario de creación aparece un botón "Añadir nueva opción para el selector" que nos servirá para crear las opciones con sus respectivos valores que queremos que contenga nuestro selector, ofreciendo dos campos "Etiqueta" y "Valor" y la posibilidad de crear tantas opciones como necesitemos. Un ejemplo para este tipo de campo podría ser un selector para el tipo de documento, donde podríamos crear 2 opciones: (Etiqueta: DNI, valor 0) y (Etiqueta: Pasaporte, valor: 1).
+  - Campo fecha
+
+- Zona geográfica: Este checkox permite marcar un campo del tipo zona geográfica. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local el dato referente a la zona geográfica y poder guardarlo directamente al usuario verificado. Este tipo de campo nos permitirá utilizar las funcionalidades de la aplicación referentes a la zona geográfica en la que se encuentra el usuario, como por ejemplo votar encuestas en función del distrito del usuario.
+
+- Fecha de nacimiento: Esta checkox permite marcar un campo del tipo fecha de nacimiento. Este campo se tendrá que asociar con el Censo Remoto y/o el Censo Local en los siguientes pasos. La finalidad de este campo es poder recuperar del Censo Remoto o del Censo local la fecha de nacimiento y validar que el usuario verificado cumple la restricción de edad definida en la aplicación.
+
+
 ## Global configuration parameters
 
 In the side menu you will find the option "Settings" and then the submenu "Global Settings". Here you will find many interesting parameters, but at the moment we recommend you to define some of the most basic ones. Later, when you are more familiar with the tool, you will be able to reconfigure other parameters:
