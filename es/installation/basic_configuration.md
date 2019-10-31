@@ -145,7 +145,7 @@ Este proceso envía un sms al número definido por el usuario con un código de 
 En este podrá ver un resumen de los campos configurados durante el asistente.
 
 ### Ejemplos de uso
-Ejemplo 1: Institución que quiere crear un proceso de verificación básico por censo remoto con una checkbox para aceptar los terminos y condiciones de uso.
+Ejemplo 1: Institución que quiere crear un proceso de verificación básico por censo remoto con un checkbox para aceptar los terminos y condiciones de uso.
 - Paso 1: Activar "Proceso de verificación de usuario personalizable" y desactivar "Omitir verificación de usuarios"
 - Paso 2: Activar "Verificar un usuario contra el Censo Remoto SOAP" y desactivar "Verificar un usuario contra el Censo Local" y "Verificar el teléfono de un usuario por SMS"
 - Paso 3: En este paso necesitamos definir los campos que queremos mostrar en el formulario:
@@ -183,7 +183,7 @@ Ejemplo 1: Institución que quiere crear un proceso de verificación básico por
 
   Para crear el campo :tos
   - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
-    - Etiqueta: "Acepto los siguientes Terminos y Condiciones de Uso"
+    - Etiqueta: "Acepto los siguientes Términos y Condiciones de Uso"
     - Nombre: "terms_and_conditions"
     - Posición: "3"
     - Requerido?: Lo marcaremos para que sea obligatorio introducirlo por el usuario.
@@ -268,7 +268,7 @@ En este último paso veremos un resumen de todos los campos creados y sus asocia
 Una vez definido todo nuestro proceso de verificación, podemos ver el resultado en la parte pública cuando un usuario quiere verifcarse (verification/process/new):
 ![Process new](../../img/verification_process/example-1-process-new-es.png)
 
-Ejemplo 2: Institución que quiere crear un proceso de verificación básico por censo local con una checkbox para aceptar los terminos y condiciones de uso y un campo no obligatorio con alguna información que quiera solicitar la institución, pero que no queremos que bloqueé la verificación en caso de no ser informado por el usuario.
+Ejemplo 2: Institución que quiere crear un proceso de verificación básico por censo local con un checkbox para aceptar los terminos y condiciones de uso y un campo no obligatorio con alguna información que quiera solicitar la institución, pero que no queremos que bloqueé la verificación en caso de no ser informado por el usuario.
 - Paso 1: Activar "Proceso de verificación de usuario personalizable" y desactivar "Omitir verificación de usuarios"
 - Paso 2: Activar "Verificar un usuario contra el Censo Local" y desactivar "Verificar un usuario contra el Censo Remoto SOAP" y "Verificar el teléfono de un usuario por SMS"
 - Paso 3: En este paso necesitamos definir los campos que queremos mostrar en el formulario:
@@ -285,7 +285,7 @@ Ejemplo 2: Institución que quiere crear un proceso de verificación básico por
   Para crear el campo :family_status
   - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
       - Etiqueta: "Estado civil"
-      - Ayuda: Este campo no es obligatorio pero puede resultar de utilidad para elaborar estadísticas para la insitución
+      - Ayuda: Este campo no es obligatorio pero puede resultar de utilidad para elaborar estadísticas para la institución
       - Nombre: "family_status"
       - Posición: "3"
       - Requerido?: Lo dejaremos desmarcado para que no sea obligatorio.
@@ -321,15 +321,185 @@ Este paso 4 para el Censo Local servirá para asociar los campos necesarios a es
       - Clicamos en el botón comentado "Asociar campo a este proceso de verificación"
       - En el selector de campo de verificación, seleccionamos :document_number
 
-  Una vez hemos asociado los dos campos necesarios y rellenada la información referente a configurar la conexión al censo local deberíamos ver esta pantalla:
+  Una vez hemos asociado los dos campos necesarios deberíamos ver esta pantalla:
   ![Step 4](../../img/verification_process/example-2-step-4-es.png)
 
 - Paso 5: Asistente completado con éxito! En este ejemplo llegamos directamente a esta pantalla porque solo hemos activado un método de verificación, si hubiésemos activado más métodos, los siguientes pasos hubiesen sido asociar campos a cada uno de esos métodos de verificación.
 En este último paso veremos un resumen de todos los campos creados y sus asociaciones con los diferentes métodos de verificación:
 ![Final Step](../../img/verification_process/example-2-final-step-es.png)
 
+Una vez definido todo nuestro proceso de verificación, podemos ver el resultado en la parte pública cuando un usuario quiere verificarse (verification/process/new):
+![Process new](../../img/verification_process/example-2-process-new-es.png)
+
+Ejemplo 3: Institución que quiere crear un proceso de verificación básico por SMS con un checkbox para aceptar los terminos y condiciones de uso.
+- Paso 1: Activar "Proceso de verificación de usuario personalizable" y desactivar "Omitir verificación de usuarios"
+- Paso 2: Activar "Verificar el teléfono de un usuario por SMS" y desactivar "Verificar un usuario contra el Censo Remoto SOAP" y "Verificar un usuario contra el Censo Local"
+- Paso 3: En este paso necesitamos definir los campos que queremos mostrar en el formulario:
+  - Un campo para que el usuario pueda introducir su teléfono (:phone)
+  - Un campo para el checkbox de términos y condiciones de uso (:tos)
+
+  Para crear el campo :phone
+  - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
+      - Etiqueta: "Teléfono"
+      - Nombre: "phone"
+      - Posición: "3"
+      - Requerido?: Lo dejaremos desmarcado para que no sea obligatorio.
+      - Requiere campo de confirmación?: En este caso sí que nos interesa asegurarnos de que la aplicación enviará un sms al teléfono correcto, así que marcaremos este checkbox para que nos cree un campo de confirmación adicional.
+      - Visualizar el campo?: Por defecto este campo está activo, así que mantendremos la configuración por defecto, para que se muestre al usuario en su formulario de verificación.
+      - Tipo del campo: Seleccionaremos "Campo de Texto"
+
+  Para crear el campo :tos
+  - Igual que en el ejemplo 1, pero en la posición 2
+
+  Después de haber creado los 3 campos en este paso 3 deberíamos estar viendo en el asistente esta pantalla:
+  ![Step 3](../../img/verification_process/example-3-step-3-es.png)
+
+- Paso 4: Al haber activado en el paso 2 solo el método de verificación "Verificar el teléfono de un usuario por SMS", este paso 4 será la forma de asociar el campo creado(:phone) a este método de verificación.
+Este paso 4 consta de 2 partes, la primera definir la conexión al servicio de SMS y la segunda asociar los campos necesarios a este método de verificación:
+  - Configurar la conexión al servicio de SMS: Para rellenar esta sección será necesario un perfil técnico que entienda y tenga acceso al servicio de SMS que se pretende utilizar. Para utilizar esta funcionalidad debe revisar 'consul/lib/sms_api.rb' y ver que se adapta a sus necesidades.
+    - SMS Endpoint: Nombre del host donde se encuentra el servicio de SMS
+    - Usuario para el servicio de SMS: Usuario para el servicio de SMS.
+    - Password para el servicio de SMS: Password para el servicio de SMS.
+
+  - Asociar campos a este proceso de verificación: En este ejemplo hemos creado 2 campos, pero solo 1 de ellos lo necesitamos enviar un sms al usuario (:phone). Así que vamos a proceder a asociarlos con el botón que se encuentra en la parte superior derecha "Asociar campo a este proceso de verificación".
+    - Asociar :phone
+      - Clicamos en el botón comentado "Asociar campo a este proceso de verificación"
+      - En el selector de campo de verificación, seleccionamos :phone
+      - Clicamos en Guardar, que nos llevará otra vez a la pantalla anterior para poder volver a asociar otro campo a este método de verificación
+
+  Una vez hemos asociado los dos campos necesarios y rellenada la información referente a configurar la conexión al servicio de SMS deberíamos ver esta pantalla:
+  ![Step 4](../../img/verification_process/example-3-step-4-es.png)
+
+- Paso 5: Asistente completado con éxito! En este ejemplo llegamos directamente a esta pantalla porque solo hemos activado un método de verificación, si hubiésemos activado más métodos, los siguientes pasos hubiesen sido asociar campos a cada uno de esos métodos de verificación.
+En este último paso veremos un resumen de todos los campos creados y sus asociaciones con los diferentes métodos de verificación:
+![Final Step](../../img/verification_process/example-3-final-step-es.png)
+
+Una vez definido todo nuestro proceso de verificación, podemos ver el resultado en la parte pública cuando un usuario quiere verificarse (verification/process/new):
+![Process new](../../img/verification_process/example-3-process-new-es.png)
+
+Ejemplo 4: Institución que quiere crear un proceso de verificación avanzado por censo remoto con una validación de la edad mínima requerida para participar y permitir actualizar la geolocalización de un usuario y con un checkbox para aceptar los terminos y condiciones de uso.
+- Paso 1: Activar "Proceso de verificación de usuario personalizable" y desactivar "Omitir verificación de usuarios"
+- Paso 2: Activar "Verificar un usuario contra el Censo Remoto SOAP" y desactivar "Verificar un usuario contra el Censo Local" y "Verificar el teléfono de un usuario por SMS"
+- Paso 3: En este paso necesitamos definir los campos que queremos mostrar en el formulario:
+  - Los campos que queremos enviar al censo remoto. Un ejemplo de datos que puede necesitar un WebService de censo (:document_type y :document_number)
+  - Un campo para el checkbox de términos y condiciones de uso (:tos)
+
+  Para crear el campo :document_type
+  - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
+    - Etiqueta: "Tipo de Documento"
+    - Nombre: "document_type"
+    - Posición: "1"
+    - Requerido?: Lo marcaremos para que sea obligatorio introducirlo por el usuario.
+    - Requiere campo de confirmación?: En este caso no queremos que nos duplique el campo para confirmarlo.
+    - Visualizar el campo?: Por defecto este campo está activo, así que mantendremos la configuración por defecto, para que se muestre al usuario en su formulario de verificación.
+    - Tipo del campo: Seleccionaremos "campo selector" y clicaremos en el botón que nos aparece "Añadir nueva opción para el selector". Esto nos ofrecerá unos campos "Etiqueta" y "Valor" que serán las opciones que queremos mostrar al usuario en este campo.
+    Un ejemplo sería añadir 2 opciones:
+      - Primera opción:
+        - Etiqueta: DNI
+        - Valor: 1
+      - Segunda opción:
+        - Etiqueta: Pasaporte
+        - Valor: 2
+  Una vez rellenados todos estos campos para el :document_type, clicaremos en el botón de "Crear campo". Esto nos redirigirá a la pantalla anterior donde veremos en el listado de campos que ya se ha creado. Y podremos clicar otra vez en "Crear campo" para añadir el siguiente campo que necesitamos en este ejemplo, que sería el "document_number". Como se puede observar en este listado, aparece el campo que acabamos de crear pero en la columna de "Controlador" aparece sin valor, esto es porque aún no lo hemos asignado a ningún proceso de verificación. Primero creamos todos los campos que necesitamos y luego siguiendo el asistente ya asignaremos cada campo a uno o mas controladores/metodos de verificación.
+
+  Para crear el campo :document_number
+  - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
+    - Etiqueta: "Número de Documento"
+    - Nombre: "document_number"
+    - Posición: "2"
+    - Requerido?: Lo marcaremos para que sea obligatorio introducirlo por el usuario.
+    - Requiere campo de confirmación?: En este caso no queremos que nos duplique el campo para confirmarlo.
+    - Visualizar el campo?: Por defecto este campo está activo, así que mantendremos la configuración por defecto, para que se muestre al usuario en su formulario de verificación.
+    - Tipo del campo: Mantendremos el valor por defecto "Campo de texto".
+  Una vez rellenados todos estos campos para el :document_number, clicaremos en el botón de "Crear campo". Esto nos redirigirá a la pantalla anterior donde veremos en el listado de campos que ya se ha creado. En este punto deberíamos ver tanto el registro del :document_type como el registro del :document_number que acabamos de crear. Ahora continuamos con el último campo que nos falta para crear el proceso de verificación definido en el ejemplo.
+
+  Para crear el campo :tos
+  - En el paso "Formulario de verificación de usuarios" clicaremos sobre el botón "Crear campo".
+    - Etiqueta: "Acepto los siguientes Términos y Condiciones de Uso"
+    - Nombre: "terms_and_conditions"
+    - Posición: "3"
+    - Requerido?: Lo marcaremos para que sea obligatorio introducirlo por el usuario.
+    - Requiere campo de confirmación?: En este caso no queremos que nos duplique el campo para confirmarlo.
+    - Visualizar el campo?: Por defecto este campo está activo, así que mantendremos la configuración por defecto, para que se muestre al usuario en su formulario de verificación.
+    - Tipo del campo: Seleccionaremos "Campo checkbox". Una vez seleccionado nos aparecerá la posibilidad de asociar este checkbox a una página propia de la aplicación donde podremos definir esos términos y condiciones de uso. Este campo "Link que se mostrará al lado de un campo del tipo checkbox" se debe rellenar con el "slug" de la nueva página que podemos crear a través de la sección de administración "Contenido del sitio > Personalizar páginas". En este caso si no se ha creado antes, crearemos la página con el slug que indiquemos en este campo al finalizar el asistente. En este ejemplo el valor con el que vamos a rellenar este campo adicional del link será: "terms-and-conditions"
+  Una vez rellenados todos estos campos para el :tos, clicaremos en el botón de "Crear campo". Esto nos redirigirá a la pantalla anterior donde veremos en el listado de campos que ya se ha creado. En este punto deberíamos ver tanto el registro del :document_type, :document_number y el :tos que acabamos de crear.
+
+  Después de haber creado los 3 campos en este paso 3 deberíamos estar viendo en el asistente esta pantalla:
+  ![Step 3](../../img/verification_process/example-1-step-3-es.png)
+
+- Paso 4: Al haber activado en el paso 2 solo el método de verificación "Verificar un usuario contra el Censo Remoto SOAP", este paso 4 será la forma de asociar los campos creados(:document_type y :document_number) a este método de verificación.
+Este paso 4 consta de 2 partes, la primera definir la conexión al censo remoto y la segunda asociar los campos necesarios a este método de verificación:
+  - Configurar la conexión al censo remoto: Para rellenar esta sección será necesario un perfil técnico que entienda y tenga acceso a los servicios de Censo que se quieren utilizar.
+    - Endpoint: Nombre del host donde se encuentra el servicio del censo (wsdl), por ejemplo: "http://intranet.institución.es:8888/services/CensoService?wsdl"
+    - Nombre del método de la petición: Nombre del método que acepta el WebService del Censo del Ayuntamiento, per ejemplo: "get_residents"
+    - Estructura de la petición: Para rellenar este campo debemos tener claro que estructura de petición tiene nuestro WebService. Para este ejemplo supondremos que nuestro petición tiene la siguiente estructura:
+    { request: { static_field: , document_type: , document_number: } }
+    La forma correcta de introducir esta estructura sería la siguiente:
+    { "request": { "static_field": "1", "document_type": "nil", "document_number": "nil" } }
+    Como podemos observar, los campos estáticos que siempre se envían con el mismo valor ya se dejan con el valor necesario, y los campos dinámicos que se enviaran desde el formulario de verificación es necesarios dejarlos como un string (vease :document_type y :document_number).
+    - Condición para detectar una respuesta válida: Que ruta de la respuesta tiene que venir informado para considerarse una respuesta válida. Para rellenar este campo deberemos conocer las respuestas de nuestro WebService y determinar que campo se envia informado cuando la respuesta es válida, que no es enviado cuando la respuesta es inválida. Para entender este campo vamos a poner dos ejemplos de respuestas:
+    Respuesta válida:
+    {
+      get_habita_datos_response: {
+        get_habita_datos_return: {
+          datos_habitante: {
+            item: {
+              fecha_nacimiento_string: "31-12-1980",
+              identificador_documento: "12345678Z",
+              descripcion_sexo: "Varón",
+              nombre: "José",
+              apellido1: "García"
+            }
+          },
+          datos_vivienda: {
+            item: {
+              codigo_postal: "28013",
+              codigo_distrito: "01"
+            }
+          }
+        }
+      }
+    }
+
+    Respuesta inválida:
+    {
+      get_habita_datos_response: {
+        get_habita_datos_return: {
+          datos_habitante: {},
+          datos_vivienda: {}
+        }
+      }
+    }
+    Como podemos observar en estos dos ejemplos de respuesta, el campo que llega informado en una respuesta válida y que no llega en una respuesta inválida sería el campo "item" dentro de "datos habitante". Para poder utilizar este campo correctamente si queremos que el campo "item" sea el campo con el que detectaremos si una respuesta es válida o inválida lo deberíamos rellenar con el siguiente texto: "get_habita_datos_response.get_habita_datos_return.datos_habitante.item".
+
+  - Asociar campos a este proceso de verificación: En este ejemplo hemos creado 3 campos, pero solo 2 de ellos los necesitamos para montar la estructura y hacer la petición al censo remoto (:document_type y :document_number). Así que vamos a proceder a asociarlos con el botón que se encuentra en la parte superior derecha "Asociar campo a este proceso de verificación".
+    - Asociar :document_type
+      - Clicamos en el botón comentado "Asociar campo a este proceso de verificación"
+      - En el selector de campo de verificación, seleccionamos :document_type
+      - Ahora veremos en la pantalla como hay dos campos nuevos que podemos rellenar "Ruta del campo en la solicitud" y "Ruta del campo en la respuesta". En el ejemplo que hemos planteado, solo necesitamos rellenar correctamente la ruta del campo en la solicitud ya que no hemos creado ningún campo específico que queremos validar en la respuesta (esto lo veremos en otro ejemplo).
+      Rellenar el campo "Ruta del campo en la solicitud" correctamente debemos conocer la estructura que hemos definido y rellenarlo de la misma manera que hemos rellenado el campo "Condición para detectar una respuesta válida", es decir tenemos que rellenarlo con la ruta del campo que estamos asociando en la estructura de la petición. Recordamos que la estructura que hemos definido en este ejemplo es:
+      { "request": { "static_field": "1", "document_type": "nil", "document_number": "nil" } }
+      Por lo que el campo "Ruta del campo en la solicitud" en este caso lo rellenaremos con "request.document_type". De esta manera la aplicación será capaz de montar una petición al endpoint definido, con el nombre del método definido, con la estructura definida y sustituirá el valor de "document_type": "nil" por "document_type": "el valor introducido por el usuario en el formulario de verificación en este campo".
+      - Clicamos en Guardar, que nos llevará otra vez a la pantalla anterior para poder volver a asociar otro campo a este método de verificación
+
+    - Asociar :document_number
+      - Clicamos en el botón comentado "Asociar campo a este proceso de verificación"
+      - En el selector de campo de verificación, seleccionamos :document_number
+      - Ahora veremos en la pantalla como hay dos campos nuevos que podemos rellenar "Ruta del campo en la solicitud" y "Ruta del campo en la respuesta". En el ejemplo que hemos planteado, solo necesitamos rellenar correctamente la ruta del campo en la solicitud ya que no hemos creado ningún campo específico que queremos validar en la respuesta (esto lo veremos en otro ejemplo).
+      Rellenar el campo "Ruta del campo en la solicitud" correctamente debemos conocer la estructura que hemos definido y rellenarlo de la misma manera que hemos rellenado el campo "Condición para detectar una respuesta válida", es decir tenemos que rellenarlo con la ruta del campo que estamos asociando en la estructura de la petición. Recordamos que la estructura que hemos definido en este ejemplo es:
+      { "request": { "static_field": "1", "document_type": "nil", "document_number": "nil" } }
+      Por lo que el campo "Ruta del campo en la solicitud" en este caso lo rellenaremos con "request.document_number". De esta manera la aplicación será capaz de montar una petición al endpoint definido, con el nombre del método definido, con la estructura definida y sustituirá el valor de "document_number": "nil" por "document_number": "el valor introducido por el usuario en el formulario de verificación en este campo".
+
+  Una vez hemos asociado los dos campos necesarios y rellenada la información referente a configurar la conexión al censo remoto deberíamos ver esta pantalla:
+  ![Step 4](../../img/verification_process/example-1-step-4-es.png)
+
+- Paso 5: Asistente completado con éxito! En este ejemplo llegamos directamente a esta pantalla porque solo hemos activado un método de verificación, si hubiésemos activado más métodos, los siguientes pasos hubiesen sido asociar campos a cada uno de esos métodos de verificación.
+En este último paso veremos un resumen de todos los campos creados y sus asociaciones con los diferentes métodos de verificación:
+![Final Step](../../img/verification_process/example-1-final-step-es.png)
+
 Una vez definido todo nuestro proceso de verificación, podemos ver el resultado en la parte pública cuando un usuario quiere verifcarse (verification/process/new):
 ![Process new](../../img/verification_process/example-1-process-new-es.png)
+
 
 ## Parámetros de la configuración global
 En el menú lateral encontrarás la opción "Configuración" y posteriormente el submenú "Configuración global". Aquí encontrarás muchos parámetros interesantes, pero por el momento te recomendamos definir algunos de los más básicos. Más adelante cuando estés más familiarizado con la herramienta podrás volver a configurar otros parámetros:
