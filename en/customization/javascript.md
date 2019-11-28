@@ -7,9 +7,3 @@ $(function(){
   alert('foobar');
 });
 ```
-
-If you work with Coffeescript code you can check it with [coffeelint](http://www.coffeelint.org/) (install with `npm install -g coffeelint`) :
-
-```bash
-coffeelint .
-```
